@@ -1,0 +1,52 @@
+v3.3
+Tryb okienkowy który pozwala na:																	POJĘCIA:
+- klikanie wypraw od 1 do 4 po zaznaczeniu												Hades - zewnętrzne wyprawy, dzięki którym dostajemy możliwość zdobycia stroju na dodatkowe pkt,
+  a)leczenie w przypadku gdy nie mamy wystarczającej liczby HP										przy czym nie można się w nim leczyć, a pkt wypraw są mocno ograniczone
+  b)przerzucenie jedzenia z paczki, gdy nie mamy przedmiotów w bp									paczkowanie się - pakowanie swojego złota w paczki - które są posegregowane i bezpieczne
+  c)wybór odpowiedniej postaci do leczenia, jeśli nie jest ustawiona (ct,lochy itd.)							przed ograbieniem nas ze złota
+- klikanie lochów przy zaznaczeniu													arena,CT - miejsce do rywalizowania z innymi graczami
+- klikanie aren na arenie serwerowej(0), arenie międzyserwerowej(1), w drabince - co 1 do góry (2)
+  a)jeśli nie ma hp, bot się uleczy, jak powyżej
+- klikanie aren w trybie CT, jak powyżej z dodatkiem:
+  a)za pomocą zewnętrznego skryptu bot robi listę targetów - czyli osób z którymi poprzednio wygrywaliśmy
+  b)bot będzie atakował przeciwnika z powyższej listy zawsze, chyba że takowej nie ma, wtedy zaatakuje pierwszego przeciwnika
+  c)jeśli, pojawi się komunikat o 5+ walkach, bot go skipnie
+- wprowadzenie nazwy gracza, która pozwoli na:
+  a)leczenie odpowiedniej postaci
+  b)co ważniejsze, wytypowanie wygranego walk na arenie, oraz liczenie statystyk
+- zaznaczenie opcji "event", dzięki której bot będzie klikał dodatkową lokację eventową (dodatkowe wyprawy)
+- zaznaczenie opcji "hades", dzięki której:
+  a)bot wejdzie do hadesu, jeśli tylko będzie to możliwe
+  b)bot przeloguje się oraz przełączy się na drugą kartę po przelogowaniu, gdy najdzie taka potrzeba (zabezpieczenie anty-bot)
+  c)bot zatrzyma "wykonywanie" lochów, areny i wypraw i przerzuci się na tryb wypraw w hadesie - wyłączy również klasyczne leczenie
+  d)bot w hadesie będzie robił wyprawy, tylko wtedy gdy hp > 40, w przeciwnym razie będzie próbował wyleczyć się u medyka
+  e)bot rozpozna koniec hadesu i wróci do normalnego trybu - jeśli były zaznaczone wyprawy,areny czy lochy, będzie je kontynuował
+- wpisanie odpowiedniej liczby "minut", dzięki której bot będzie robił przerwę gdy zejdzie z wyprawami do 0 (wyjątkiem hades oraz strój hadesowy)
+Dodatkowo rzeczy, którymi możemy manipulować ze środku programu (nie dostępne jeszcze dla zwykłego użytkownika:
+  1)bot samodzielnie robi zadania, przy czym rozpoznaje, czy robimy areny serwerowe, między serwerowe, czy nie robimy aren wcale
+    i na tej podstawie wybiera odpowiednie zadania, zakańcza je, czy też w przypadku niepowodzenia odświeza (co ok 1 minute)
+  2)bot analizuje wygrane walki na arenie oraz na circus turma, dodatkowo analizuje ukończone zadania oraz wyprawy, z których to liczy:
+    - doświadczenie z aren/wypraw/zadań
+    - honor z wypraw oraz zadań
+    - liczbę wykonanych zadań oraz wypraw
+    - liczbę wszystkich walk z podziałem na liczbę wygranych/całkowitą (tylko przy wpisaniu swojego nicku w oknie)
+  3)bot paczkuje się przy odczytaniu liczby naszego złota, wybierając optymalną dla siebie paczkę (ustawione odgórnie wewnątrz programu)
+  4)bot może całkowicie działać w tle, przy zminimalizowanym oknie, można go otworzyć bezpośrednio wiele razy, dla każdej z postaci (ustawione odgórnie)
+  5)bot ma następujące zabezpieczenia:
+    - przy paczkowaniu bot bierze pod uwagę ilośc golda z zapasem, tak żeby przy ataku w trakcie paczkowania, mógł wystawić daną paczkę z powrotem na rynek
+    - przy paczkowaniu bot zapamiętuje jaką paczkę kupił i w paczkach analizuje 3 paczki pod kątem właściwej paczki na rynek, którą potem odstawia
+    - przy paczkowaniu bot nigdy nie anuluje swojej paczki, ponieważ analizuje, od kogo i za ile jest wykupiona paczka, a także nazwę przycisku ("kup", "anuluj")
+    - przy paczkowaniu bot analizuje kwotę paczki i odpowiednio segreguje możliwość kupna. Przy taniej paczce będzie segregował od najtańszych, przy droższej paczce odwrotnie
+    - skrypt posiada masę timerów dzięki którym odlicza różne "czasy", dzięki temu nie wchodzi w zadania co chwilę oraz nie próbuje się paczkować co chwilę, w momencie gdy na rynku nie ma dostępnej odpowiedniej paczki
+    - bot sprawdza możliwość zrobienia hadesu co 3 minuty, tylko gdy mamy poziom > 99, zapobiega to próbie wchodzenia w hades co chwile i przy zbyt niskim lvlu
+    - w hadesie bot sprawdza zawsze ilość naszego hp, co zapobiega przegraniu hadesu przez 0 hp oraz jeśli trzeba uleczy się w gildii
+    - bot samoczynnie zamyka okienka takie jak lvl_up, osiągnięcia, potwierdzenie wszelkiego rodzaju ataków, czy komunikat o ukończonym hadesie
+    - bot samodzielnie będzie anulował lochy i zaczynał je od nowa (moment anulowania odgórnie ustawione wewnątrz programu)
+    - bot będzie wchodził na lokację eventową co ok 7-8 minut, co zapobiega spamowaniu tej lokacji co chwile (czas po wyprawie domyślnie nie pokazuje się od razu - błąd GF)
+    - bot automatycznie przeloguje się po ruszeniu na hades, co zapobiegnie stopowaniu jakichkolwiek akcji i przełączy się na odpowiednią kartę (o ile zajdzie taka potrzeba)
+    - bot co jakiś czas odświeży stronę, co zapobiegnie np problemom z internetem (rozłączanie, złe wczytanie strony itd.)
+    - bot analizuje wpisane dane, jeśli nie wpiszemy tam nic, zmienna przyjmie wartość 0, co skutkuje brakiem akcji w danym zakresie (wyprawy, lochy, areny itd.)
+ - Ponadto botem można sterować w aplikacji okienkowej nie zatrzymując do - przykładowo jeśli w trakcie działania, zmienimy przeciwnika z 3 na 4, kolejnym zaatakowanym przeciwnikiem będzie 4, bez konieczności stopowania akcji
+
+Dodatkowy skrypt pozwala na lvlowanie postacią od 1 do 4 lvla automatycznie. Po spełnieniu warunków postać będzie rozsyłała wiadomości automatycznie do 250 graczy z rankingu tygodniowego - z wybranymi wyjątkami - o możliwości np.
+zakupienia złota.
